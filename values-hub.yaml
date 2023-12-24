@@ -16,7 +16,6 @@ clusterGroup:
 
     serverless:
       name: serverless-operator
-      namespace: openshift-serverless
 
   projects:
     - hub
