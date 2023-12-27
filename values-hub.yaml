@@ -17,6 +17,10 @@ clusterGroup:
     serverless:
       name: serverless-operator
 
+    rhods:
+      name: rhods-operator
+
+
   projects:
     - hub
 
@@ -59,6 +63,11 @@ clusterGroup:
       namespace: openshift-serverless
       project: hub
       path: charts/all/openshift-serverless
+
+    openshift-rhods:
+      name: rhods
+      project: hub
+      path: charts/all/openshift-rhods
 
     vault:
       name: vault
