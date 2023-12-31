@@ -1,18 +1,18 @@
 clusterGroup:
   name: hub
-  isHubCluster: true
+  isHubCluster: false
 
   namespaces:
-    - open-cluster-management
     - vault
     - golang-external-secrets
     - openshift-serverless
+    - openshift-rhods
 
   subscriptions:
-    acm:
-      name: advanced-cluster-management
-      namespace: open-cluster-management
-      channel: release-2.8
+#    acm:
+#      name: advanced-cluster-management
+#      namespace: open-cluster-management
+#      channel: release-2.8
 
     serverless:
       name: serverless-operator
@@ -22,7 +22,7 @@ clusterGroup:
 
 
   projects:
-    - hub
+    - demo-pattern
 
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
@@ -47,11 +47,11 @@ clusterGroup:
   #   - '/overrides/values-{{ $.Values.global.localClusterDomain }}.yaml'
 
   applications:
-    acm:
-      name: acm
-      namespace: open-cluster-management
-      project: hub
-      path: common/acm
+#    acm:
+#      name: acm
+#      namespace: open-cluster-management
+#      project: hub
+#      path: common/acm
 #      ignoreDifferences:
 #      - group: internal.open-cluster-management.io
 #        kind: ManagedClusterInfo
@@ -61,22 +61,22 @@ clusterGroup:
     openshift-serverless:
       name: serverless
       namespace: openshift-serverless
-      project: hub
+      project: demo-pattern
       path: charts/all/openshift-serverless
 
     openshift-rhods:
-      name: rhods
-      project: hub
+      name: openshift-rhods
+      project: demo-pattern
       path: charts/all/openshift-rhods
 
     vault:
       name: vault
       namespace: vault
-      project: hub
+      project: demo-pattern
       path: common/hashicorp-vault
 
     golang-external-secrets:
       name: golang-external-secrets
       namespace: golang-external-secrets
-      project: hub
+      project: demo-pattern
       path: common/golang-external-secrets
